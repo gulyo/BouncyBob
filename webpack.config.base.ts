@@ -23,7 +23,7 @@ export default function configFn(): Configuration {
       ignored: [
         "/node_modules/",
         "/install/",
-      ]
+      ],
     },
     devtool: "source-map",
     module: {
@@ -35,20 +35,29 @@ export default function configFn(): Configuration {
           exclude: /node_modules/,
         },
         {
-          test: /\.s[ac]ss$/,
+          test: /\.scss$/,
           exclude: /node_modules/,
-          loader: [
-            MiniCssExtractPlugin.loader,
-            "css-loader",
+          oneOf: [
             {
-              loader: "sass-loader",
-              options: {
-                sourceMap: true,
-              }
-            }
-          ]
+              test: /\.module\.scss$/,
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: "css-loader",
+                  options: {
+                    modules: true,
+                    onlyLocals: false,
+                  },
+                },
+                "sass-loader",
+              ],
+            },
+            {
+              use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+            },
+          ],
         },
-      ]
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -64,7 +73,7 @@ export default function configFn(): Configuration {
       new MiniCssExtractPlugin({
         filename: "[name].[contenthash].css",
         chunkFilename: "[name].[contenthash].js",
-      })
+      }),
     ],
     devServer: {
       host: "localhost",
@@ -76,7 +85,7 @@ export default function configFn(): Configuration {
       compress: true,
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js"],
+      extensions: [".tsx", ".ts", ".js", ".scss"],
     },
   };
 }
