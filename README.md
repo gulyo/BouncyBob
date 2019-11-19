@@ -1,2 +1,2 @@
 # BouncyBob
- Web technology based anymation spike
+ Web technology based animation spike
