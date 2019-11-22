@@ -1,4 +1,5 @@
 import IVisualizer from "../IVisualizer";
-import IShapeConfig from "./IShapeConfig";
+import IConfigShape from "./IConfigShape";
 
-export default interface IShape extends IVisualizer<IShapeConfig> {}
+export default interface IShape extends IVisualizer<IConfigShape> {
+}

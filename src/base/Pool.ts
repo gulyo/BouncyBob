@@ -1,11 +1,15 @@
 import Factory from "./Factory";
+import IConfigProduct from "./IConfigProduct";
 import IPool from "./IPool";
-import IProductConfig from "./IProductConfig";
 import IProductReusable from "./IProductReusable";
 
-export default abstract class Pool<TConfig extends IProductConfig, TProduct extends IProductReusable<TConfig>>
+export default abstract class Pool<TConfig extends IConfigProduct, TProduct extends IProductReusable<TConfig>>
   extends Factory<TConfig, TProduct>
   implements IPool<TConfig, TProduct> {
+  protected limit: number = 10;
+  protected poolActive: Map<string, TProduct> = new Map<string, TProduct>();
+  protected poolPassive: TProduct[] = [];
+
   public get CanProvide(): boolean {
     return this.poolActive.size < this.Limit;
   }
@@ -23,11 +27,6 @@ export default abstract class Pool<TConfig extends IProductConfig, TProduct exte
     }
     this.limit = Math.floor(value);
   }
-
-  protected limit: number = 10;
-
-  protected poolActive: Map<string, TProduct> = new Map<string, TProduct>();
-  protected poolPassive: TProduct[] = [];
 
   public Provide(name: string): TProduct {
     if (!this.CanProvide) {

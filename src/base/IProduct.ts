@@ -1,9 +1,9 @@
-import IProductConfig from "./IProductConfig";
+import IConfigProduct from "./IConfigProduct";
 
 /**
  * Anything that could be created by a Factory
  */
-export default interface IProduct<TConfig extends IProductConfig = IProductConfig> {
+export default interface IProduct<TConfig extends IConfigProduct = IConfigProduct> {
   /**
    * A Global Unique Unique Id is expected here, should be set by every
    * Product implementation individually
@@ -11,5 +11,6 @@ export default interface IProduct<TConfig extends IProductConfig = IProductConfi
    * using it.
    */
   readonly GUId: string;
+
   Init(config: TConfig): void;
 }
