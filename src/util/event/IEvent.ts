@@ -2,7 +2,10 @@ export interface IEventHandlerArgument {
   [key: string]: any;
 }
 
+export type EventHandler = (arg: IEventHandlerArgument) => void;
+
 export default interface IEvent {
-  SignUp(handler: (arg: IEventHandlerArgument) => void): () => void;
+  SignUp(handler: EventHandler): () => void;
+
   Trigger(arg: IEventHandlerArgument);
 }

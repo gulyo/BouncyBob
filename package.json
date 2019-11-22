@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "dependencies": {
     "jquery": "^3.4.1",
-    "typescript-logging": "^0.6.4"
+    "typescript-logging": "^0.6.4",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.23",

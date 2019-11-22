@@ -1,5 +1,5 @@
-import IEvent from "../../base/IEvent";
 import IProduct from "../../base/IProduct";
+import IEvent from "../../util/event/IEvent";
 import IDimension from "../dimension/IDimension";
 import ISpaceConfig from "./ISpaceConfig";
 
