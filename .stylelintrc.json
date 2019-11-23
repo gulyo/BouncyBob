@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "extends": "stylelint-config-recommended-scss",
+  "defaultSeverity": "error",
+  "rules": {
+    "scss/selector-no-redundant-nesting-selector": true,
+    "max-empty-lines": 2
+  }
+}

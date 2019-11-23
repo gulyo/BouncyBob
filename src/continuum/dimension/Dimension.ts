@@ -17,5 +17,4 @@ export default class Dimension extends Product<IConfigDimension> {
     this.extremeLow = config.ExtremeLow;
     this.extremeHigh = config.ExtremeHigh;
   }
-
 }

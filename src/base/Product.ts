@@ -3,7 +3,6 @@ import IConfigProduct from "./IConfigProduct";
 import IProduct from "./IProduct";
 
 export default abstract class Product<TConfig extends IConfigProduct = IConfigProduct> implements IProduct<TConfig> {
-
   protected guid: string;
 
   constructor() {
@@ -19,5 +18,4 @@ export default abstract class Product<TConfig extends IConfigProduct = IConfigPr
   protected setGuid() {
     this.guid = guid();
   }
-
 }
