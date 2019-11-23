@@ -6,4 +6,6 @@ import IConfigProduct from "../../base/IConfigProduct";
 export default interface IConfigDimension extends IConfigProduct {
   ExtremeLow: number;
   ExtremeHigh: number;
+
+  Accelerators: string[];
 }
