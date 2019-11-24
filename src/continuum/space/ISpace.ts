@@ -4,9 +4,7 @@ import IDimension from "../dimension/IDimension";
 import IConfigSpace from "./IConfigSpace";
 
 export default interface ISpace extends IProduct<IConfigSpace> {
-  readonly Dimension: {
-    [key: string]: IDimension;
-  };
+  readonly Dimensions: IDimension[];
 
   readonly OnResize: IEvent;
 }

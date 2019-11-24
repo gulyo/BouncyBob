@@ -1,4 +1,4 @@
-import { appContainerElement } from "../app.globals";
+import { appContainerElement } from "../appGlobals";
 import STYLE from "./icon.m.scss";
 
 const htmlTag: JQuery = $(`
