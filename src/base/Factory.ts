@@ -4,7 +4,7 @@ import { IProduct } from "./IProduct";
 type ProviderFn<TProduct> = new () => TProduct;
 
 export abstract class Factory<TConfig, TProduct extends IProduct<TConfig>> implements IFactory<TConfig, TProduct> {
-  protected providers: Map<string, ProviderFn<TProduct>>;
+  protected providers: Map<string, ProviderFn<TProduct>> = new Map<string, ProviderFn<TProduct>>();
 
   public Provide(name: string): TProduct {
     if (!this.providers.has(name)) {
