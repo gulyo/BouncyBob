@@ -1,6 +1,6 @@
 /**
  * Configuration to initialize a Product
  */
-export default interface IProductConfig {
+export interface IConfigProduct {
   [key: string]: any;
 }

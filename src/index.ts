@@ -1,4 +1,4 @@
-import "./app.imports";
-import { logBouncyBob } from "./util/logConfig";
+import "./appImports";
+import { Notifier } from "./util/Notifier";
 
-logBouncyBob.info({ msg: "Hello World" });
+Notifier.Notify("Welcome to Bouncy Bob application!");
