@@ -1,3 +1,3 @@
-import IConfigProduct from "./IConfigProduct";
+import { IConfigProduct } from "./IConfigProduct";
 
-export default class ConfigProduct implements IConfigProduct {}
+export class ConfigProduct implements IConfigProduct {}

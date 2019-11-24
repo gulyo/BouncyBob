@@ -1,4 +1,4 @@
-import IVisualizer from "../IVisualizer";
-import IConfigWorld from "./IConfigWorld";
+import { IVisualizer } from "../IVisualizer";
+import { IConfigWorld } from "./IConfigWorld";
 
-export default interface IWorld extends IVisualizer<IConfigWorld> {}
+export interface IWorld extends IVisualizer<IConfigWorld> {}

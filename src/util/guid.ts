@@ -9,6 +9,6 @@ import { ulid } from "ulid";
  * This "alias" function was introduced so I can change the generator
  * library easily, would it be necessary.
  */
-export default function guid(): string {
+export function guid(): string {
   return ulid();
 }

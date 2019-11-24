@@ -1,8 +1,8 @@
-import guid from "../util/guid";
-import IConfigProduct from "./IConfigProduct";
-import IProduct from "./IProduct";
+import { guid } from "../util/guid";
+import { IConfigProduct } from "./IConfigProduct";
+import { IProduct } from "./IProduct";
 
-export default abstract class Product<TConfig extends IConfigProduct = IConfigProduct> implements IProduct<TConfig> {
+export abstract class Product<TConfig extends IConfigProduct = IConfigProduct> implements IProduct<TConfig> {
   protected guid: string;
 
   constructor() {

@@ -1,7 +1,7 @@
-import guid from "../guid";
-import IEvent, { EventHandler, IEventHandlerArgument } from "./IEvent";
+import { guid } from "../guid";
+import { EventHandler, IEvent, IEventHandlerArgument } from "./IEvent";
 
-export default class Event implements IEvent {
+export class Event implements IEvent {
   protected handlers: Map<string, EventHandler> = new Map<string, EventHandler>();
 
   public SignUp(handler: EventHandler): () => void {

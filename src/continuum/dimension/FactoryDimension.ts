@@ -1,7 +1,8 @@
-import Factory from "../../base/Factory";
-import IConfigDimension from "./IConfigDimension";
-import IDimension from "./IDimension";
+import { Factory } from "../../base/Factory";
+import { IFactory } from "../../base/IFactory";
+import { IConfigDimension } from "./IConfigDimension";
+import { IDimension } from "./IDimension";
 
 class FactoryClass extends Factory<IConfigDimension, IDimension> {}
 
-export default new FactoryClass();
+export const FactoryDimension: IFactory<IConfigDimension, IDimension> = new FactoryClass();

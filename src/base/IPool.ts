@@ -1,11 +1,11 @@
-import IConfigProduct from "./IConfigProduct";
-import IFactory from "./IFactory";
-import IProductReusable from "./IProductReusable";
+import { IConfigProduct } from "./IConfigProduct";
+import { IFactory } from "./IFactory";
+import { IProductReusable } from "./IProductReusable";
 
 /**
  * A Factory that reuses instances
  */
-export default interface IPool<TConfig extends IConfigProduct, TProduct extends IProductReusable<TConfig>>
+export interface IPool<TConfig extends IConfigProduct, TProduct extends IProductReusable<TConfig>>
   extends IFactory<TConfig, TProduct> {
   /**
    * Maximum item count

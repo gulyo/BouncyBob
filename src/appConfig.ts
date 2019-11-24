@@ -1,4 +1,4 @@
-export default {
+export const appConfig = {
   /**
    * Time step in milliseconds
    */

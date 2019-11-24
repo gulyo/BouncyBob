@@ -1,6 +1,6 @@
-import Dimension from "./Dimension";
+import { Dimension } from "./Dimension";
 import "./FactoryDimension";
-import FactoryDimension from "./FactoryDimension";
+import { FactoryDimension } from "./FactoryDimension";
 
 export enum NameDimension {
   EUCLIDEAN = "Euclidean",

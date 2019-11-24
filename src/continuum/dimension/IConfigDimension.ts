@@ -1,11 +1,10 @@
-import IConfigProduct from "../../base/IConfigProduct";
+import { IConfigProduct } from "../../base/IConfigProduct";
+import { IDescriptorProduct } from "../../base/IDescriptorProduct";
+import { IConfigAcceleration } from "../acceleration/IConfigAcceleration";
 
 /**
  * Describes a dimension
  */
-export default interface IConfigDimension extends IConfigProduct {
-  ExtremeLow: number;
-  ExtremeHigh: number;
-
-  Accelerators: string[];
+export interface IConfigDimension extends IConfigProduct {
+  Accelerators: Array<IDescriptorProduct<IConfigAcceleration>>;
 }

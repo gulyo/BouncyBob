@@ -1,9 +1,9 @@
-import IProduct from "../../base/IProduct";
-import IEvent from "../../util/event/IEvent";
-import IDimension from "../dimension/IDimension";
-import IConfigSpace from "./IConfigSpace";
+import { IProduct } from "../../base/IProduct";
+import { IEvent } from "../../util/event/IEvent";
+import { IDimension } from "../dimension/IDimension";
+import { IConfigSpace } from "./IConfigSpace";
 
-export default interface ISpace extends IProduct<IConfigSpace> {
+export interface ISpace extends IProduct<IConfigSpace> {
   readonly Dimensions: IDimension[];
 
   readonly OnResize: IEvent;

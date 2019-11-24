@@ -1,9 +1,9 @@
-import appConfig from "../../appConfig";
-import Product from "../../base/Product";
-import IAcceleration from "./IAcceleration";
-import IConfigAcceleration from "./IConfigAcceleration";
+import { appConfig } from "../../appConfig";
+import { Product } from "../../base/Product";
+import { IAcceleration } from "./IAcceleration";
+import { IConfigAcceleration } from "./IConfigAcceleration";
 
-export default class AccelerationGravity extends Product<IConfigAcceleration> implements IAcceleration {
+export class AccelerationGravity extends Product<IConfigAcceleration> implements IAcceleration {
   protected coefficient: number;
 
   public Init(config: IConfigAcceleration): void {

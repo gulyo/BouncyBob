@@ -1,6 +1,6 @@
-import IProduct from "./IProduct";
+import { IProduct } from "./IProduct";
 
-export default interface IProductReusable<TConfig> extends IProduct<TConfig> {
+export interface IProductReusable<TConfig> extends IProduct<TConfig> {
   readonly IsActive: boolean;
 
   Activate(deActivator: () => void): void;

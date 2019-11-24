@@ -1,9 +1,9 @@
-import Factory from "./Factory";
-import IConfigProduct from "./IConfigProduct";
-import IPool from "./IPool";
-import IProductReusable from "./IProductReusable";
+import { Factory } from "./Factory";
+import { IConfigProduct } from "./IConfigProduct";
+import { IPool } from "./IPool";
+import { IProductReusable } from "./IProductReusable";
 
-export default abstract class Pool<TConfig extends IConfigProduct, TProduct extends IProductReusable<TConfig>>
+export abstract class Pool<TConfig extends IConfigProduct, TProduct extends IProductReusable<TConfig>>
   extends Factory<TConfig, TProduct>
   implements IPool<TConfig, TProduct> {
   protected limit: number = 10;

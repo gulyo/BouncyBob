@@ -1,10 +1,9 @@
-import IFactory from "./IFactory";
-import IProduct from "./IProduct";
+import { IFactory } from "./IFactory";
+import { IProduct } from "./IProduct";
 
 type ProviderFn<TProduct> = new () => TProduct;
 
-export default abstract class Factory<TConfig, TProduct extends IProduct<TConfig>>
-  implements IFactory<TConfig, TProduct> {
+export abstract class Factory<TConfig, TProduct extends IProduct<TConfig>> implements IFactory<TConfig, TProduct> {
   protected providers: Map<string, ProviderFn<TProduct>>;
 
   public Provide(name: string): TProduct {

@@ -1,5 +1,5 @@
-import AccelerationGravity from "./AccelerationGravity";
-import FactoryAcceleration from "./FactoryAcceleration";
+import { AccelerationGravity } from "./AccelerationGravity";
+import { FactoryAcceleration } from "./FactoryAcceleration";
 
 export enum NameAcceleration {
   GRAVITY = "gravity",
