@@ -1,5 +1,4 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
@@ -67,10 +66,10 @@ export default function configFn(): Configuration {
       new HtmlWebpackPlugin({
         inject: "body",
         chunks: "all",
+        favicon: "resource/image/bounce.png",
         filename: INDEX_HTML,
         template: path.join(SRC, INDEX_HTML),
       }),
-      new FaviconsWebpackPlugin("./resource/image/bounce.png"),
       new ProvidePlugin({
         "$": "jquery",
         "jQuery": "jquery",
