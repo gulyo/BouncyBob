@@ -1,5 +1,5 @@
 import { Product } from "../../base/Product";
-import { Event } from "../../util/event/Event";
+import { BBEvent } from "../../util/event/BBEvent";
 import { IEvent } from "../../util/event/IEvent";
 import { FactoryWorld } from "../../visualization/world/FactoryWorld";
 import { IWorld } from "../../visualization/world/IWorld";
@@ -10,7 +10,7 @@ import { ISpace } from "./ISpace";
 
 export class Space extends Product<IConfigSpace> implements ISpace {
   protected dimensions: IDimension[];
-  protected onResize: IEvent = new Event();
+  protected onResize: IEvent = new BBEvent();
   protected visualizer: IWorld;
 
   public get Dimensions(): IDimension[] {
@@ -30,6 +30,7 @@ export class Space extends Product<IConfigSpace> implements ISpace {
 
     this.visualizer = FactoryWorld.Provide(config.Visualizer.ClassName);
     this.visualizer.Init(config.Visualizer.Config);
+    this.visualizer.OnResize.SignUp(() => this.OnResize.Trigger());
     this.visualizer.Show();
   }
 }

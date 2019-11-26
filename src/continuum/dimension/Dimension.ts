@@ -1,6 +1,4 @@
 import { Product } from "../../base/Product";
-import { Event } from "../../util/event/Event";
-import { IEvent } from "../../util/event/IEvent";
 import { FactoryAcceleration } from "../acceleration/FactoryAcceleration";
 import { IAcceleration } from "../acceleration/IAcceleration";
 import { IConfigDimension } from "./IConfigDimension";
@@ -10,13 +8,7 @@ export class Dimension extends Product<IConfigDimension> implements IDimension {
   protected extremeLow: number;
   protected extremeHigh: number;
 
-  protected onResize: IEvent = new Event();
-
   protected accelerators: IAcceleration[];
-
-  public get OnResize(): IEvent {
-    return this.onResize;
-  }
 
   public get ExtremeLow(): number {
     return this.extremeLow;

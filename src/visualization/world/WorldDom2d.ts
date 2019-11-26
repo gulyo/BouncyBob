@@ -6,6 +6,7 @@ import STYLE from "./WorldDom2d.m.scss";
 
 export class WorldDom2d extends World implements IWorld {
   private element: JQuery;
+  private resizeTimerId: number;
 
   public Hide(): void {
     this.element.addClass(STYLE.hidden);
@@ -18,6 +19,14 @@ export class WorldDom2d extends World implements IWorld {
       throw new Error(`Element selector "${config.ElementSelector}" gave no result in WorldVisualizer`);
     }
     this.element.addClass(STYLE.worldContainer);
+
+    $(window).on("resize", () => {
+      // I only want to handle the end of resize
+      if (!!this.resizeTimerId) {
+        window.clearTimeout(this.resizeTimerId);
+      }
+      this.resizeTimerId = window.setTimeout(() => this.onResize.Trigger(), 500);
+    });
   }
 
   public Show(): void {
