@@ -1,0 +1,11 @@
+@import "../style/colours";
+
+.grantPermissionButton {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  z-index: 16;
+  background: transparent;
+  border: 1px solid $favourite-blue;
+  color: $favourite-blue;
+}

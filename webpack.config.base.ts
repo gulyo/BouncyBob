@@ -84,7 +84,7 @@ export default function configFn(): Configuration {
       port: 4500,
       publicPath: "/",
       contentBase: DIST,
-      inline: false,
+      inline: true,
       hot: false,
       compress: true,
     },

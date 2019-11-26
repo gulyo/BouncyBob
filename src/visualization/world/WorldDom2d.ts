@@ -1,7 +1,7 @@
 import { IConfigWorldDom2d } from "./IConfigWorldDom2d";
 import { IWorld } from "./IWorld";
 import { World } from "./World";
-import STYLE from "./WorldDom2d.scss";
+import STYLE from "./WorldDom2d.m.scss";
 
 export class WorldDom2d extends World implements IWorld {
   private element: JQuery;
@@ -16,6 +16,7 @@ export class WorldDom2d extends World implements IWorld {
     if (!this.element.length) {
       throw new Error(`Element selector "${config.ElementSelector}" gave no result in WorldVisualizer`);
     }
+    this.element.addClass(STYLE.worldContainer);
   }
 
   public Show(): void {
