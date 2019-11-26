@@ -1,3 +1,4 @@
+import { IInterval } from "../../util/IInterval";
 import { IConfigWorldDom2d } from "./IConfigWorldDom2d";
 import { IWorld } from "./IWorld";
 import { World } from "./World";
@@ -21,5 +22,12 @@ export class WorldDom2d extends World implements IWorld {
 
   public Show(): void {
     this.element.removeClass(STYLE.hidden);
+  }
+
+  public get Extremes(): IInterval[] {
+    return [
+      { Low: 0, High: this.element.innerWidth() },
+      { Low: 0, High: this.element.innerHeight() },
+    ];
   }
 }

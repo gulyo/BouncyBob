@@ -41,7 +41,7 @@ export default function configFn(): Configuration {
           exclude: /node_modules/,
           oneOf: [
             {
-              test: /\.m(odule)?\.scss$/,
+              test: /\.m\.scss$/,
               use: [
                 MiniCssExtractPlugin.loader,
                 {
@@ -49,6 +49,7 @@ export default function configFn(): Configuration {
                   options: {
                     modules: true,
                     onlyLocals: false,
+                    localsConvention: "camelCase",
                   },
                 },
                 "sass-loader",

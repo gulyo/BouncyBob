@@ -4,6 +4,7 @@ import { Configuration } from "webpack";
 import configFn from "./webpack.config.base";
 
 const config: Configuration = configFn();
+config.devtool = "source-map";
 config.mode = "production";
 config.optimization = {
   minimize: true,
@@ -14,15 +15,15 @@ config.optimization = {
         mangle: true,
         output: {
           ecma: 5,
-          webkit: true,
-        },
+          webkit: true
+        }
       },
-      sourceMap: true,
+      sourceMap: true
     }),
-    new OptimizeCssAssetsWebpackPlugin({}),
+    new OptimizeCssAssetsWebpackPlugin({})
   ],
   splitChunks: {
-    chunks: "all",
+    chunks: "all"
   }
 };
 

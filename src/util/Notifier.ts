@@ -25,7 +25,7 @@ class NotifierClass {
         this.flushMessages();
         this.grantPermissionButton.remove();
         this.grantPermissionButton = undefined;
-      })
+      }),
     );
     appContainerElement.append(this.grantPermissionButton);
   }
@@ -42,7 +42,7 @@ class NotifierClass {
     for (let msg: string = this.messages.shift(); msg; msg = this.messages.shift()) {
       if (NotifierClass.permissionGranted) {
         this.lastNotification = new Notification(msg, {
-          vibrate: [2, 3, 5]
+          vibrate: [2, 3, 5],
         });
       } else {
         // Fall back to log

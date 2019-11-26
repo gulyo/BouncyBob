@@ -1,4 +1,5 @@
 import { Product } from "../../base/Product";
+import { IInterval } from "../../util/IInterval";
 import { IConfigWorld } from "./IConfigWorld";
 import { IWorld } from "./IWorld";
 
@@ -11,4 +12,6 @@ export abstract class World extends Product<IConfigWorld> implements IWorld {
   public Init(config: IConfigWorld): void {
     this.name = config.Name;
   }
+
+  public abstract get Extremes(): IInterval[];
 }
