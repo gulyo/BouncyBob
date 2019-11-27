@@ -1,5 +1,4 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
-import FaviconsWebpackPlugin from "favicons-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
@@ -42,7 +41,7 @@ export default function configFn(): Configuration {
           exclude: /node_modules/,
           oneOf: [
             {
-              test: /\.m(odule)?\.scss$/,
+              test: /\.m\.scss$/,
               use: [
                 MiniCssExtractPlugin.loader,
                 {
@@ -50,6 +49,7 @@ export default function configFn(): Configuration {
                   options: {
                     modules: true,
                     onlyLocals: false,
+                    localsConvention: "camelCase",
                   },
                 },
                 "sass-loader",
@@ -67,10 +67,10 @@ export default function configFn(): Configuration {
       new HtmlWebpackPlugin({
         inject: "body",
         chunks: "all",
+        favicon: "resource/image/bounce.png",
         filename: INDEX_HTML,
         template: path.join(SRC, INDEX_HTML),
       }),
-      new FaviconsWebpackPlugin("./resource/image/bounce.png"),
       new ProvidePlugin({
         "$": "jquery",
         "jQuery": "jquery",
@@ -85,7 +85,7 @@ export default function configFn(): Configuration {
       port: 4500,
       publicPath: "/",
       contentBase: DIST,
-      inline: false,
+      inline: true,
       hot: false,
       compress: true,
     },

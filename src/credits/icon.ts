@@ -1,4 +1,3 @@
-import { appContainerElement } from "../appGlobals";
 import STYLE from "./icon.m.scss";
 
 const htmlTag: JQuery = $(`
@@ -7,4 +6,4 @@ const htmlTag: JQuery = $(`
         from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
     </div>`);
 
-appContainerElement.append(htmlTag);
+$("body").append(htmlTag);

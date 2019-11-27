@@ -1,0 +1,15 @@
+@import "../../style/colours";
+
+.hidden {
+  display: none;
+}
+
+.world-container {
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  border: 1px dotted $favourite-blue;
+
+  position: absolute;
+  top: 7px;
+  left: 7px;
+}

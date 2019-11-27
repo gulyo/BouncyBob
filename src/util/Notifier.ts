@@ -1,4 +1,6 @@
+import { appContainerElement } from "../appGlobals";
 import { logBouncyBob } from "./logConfig";
+import STYLE from "./Notifier.m.scss";
 
 class NotifierClass {
   private static get permissionGranted(): boolean {
@@ -11,14 +13,21 @@ class NotifierClass {
 
   private messages: string[] = [];
 
+  private grantPermissionButton: JQuery;
+
   constructor() {
     this.initialized = false;
-    if (!NotifierClass.permissionGranted) {
+    // MacOs doesn't enable "automatic" notifications => I use a button
+    this.grantPermissionButton = $(`<button class="${STYLE.grantPermissionButton}">Show Notifications</button>`);
+    this.grantPermissionButton.on("click", () =>
       Notification.requestPermission().then(() => {
         this.initialized = true;
         this.flushMessages();
-      });
-    }
+        this.grantPermissionButton.remove();
+        this.grantPermissionButton = undefined;
+      }),
+    );
+    appContainerElement.append(this.grantPermissionButton);
   }
 
   public Notify(msg: string) {

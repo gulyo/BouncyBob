@@ -1,0 +1,15 @@
+@import "../style/colours";
+@import "../style/formatting";
+
+.grant-permission-button {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  z-index: 16;
+  background: transparent;
+  border: 1px solid $favourite-blue;
+  border-radius: $border-radius;
+  color: $favourite-blue;
+  padding: 16px;
+  cursor: pointer;
+}
