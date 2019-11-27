@@ -1,4 +1,5 @@
 import { IInterval } from "../../util/IInterval";
+import { selectDomElement } from "../../util/selectDomElement";
 import { IConfigWorldDom2d } from "./IConfigWorldDom2d";
 import { IWorld } from "./IWorld";
 import { World } from "./World";
@@ -14,10 +15,7 @@ export class WorldDom2d extends World implements IWorld {
 
   public Init(config: IConfigWorldDom2d): void {
     super.Init(config);
-    this.element = $(config.ElementSelector);
-    if (!this.element.length) {
-      throw new Error(`Element selector "${config.ElementSelector}" gave no result in WorldVisualizer`);
-    }
+    this.element = selectDomElement(config.ElementSelector);
     this.element.addClass(STYLE.worldContainer);
 
     $(window).on("resize", () => {
