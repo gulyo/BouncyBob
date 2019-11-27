@@ -1,11 +1,9 @@
-export interface IEventHandlerArgument {
-  [key: string]: any;
-}
+import { IArgumentEventHandler } from "./IArgumentEventHandler";
 
-export type EventHandler = (arg: IEventHandlerArgument) => void;
+export type EventHandler<TArgument extends IArgumentEventHandler = IArgumentEventHandler> = (arg?: TArgument) => void;
 
-export interface IEvent {
-  SignUp(handler: EventHandler): () => void;
+export interface IEvent<TArgument extends IArgumentEventHandler = IArgumentEventHandler> {
+  SignUp(handler: EventHandler<TArgument>): () => void;
 
-  Trigger(arg?: IEventHandlerArgument);
+  Trigger(arg?: TArgument);
 }
