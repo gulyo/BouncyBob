@@ -31,6 +31,7 @@ export class WorldDom2d extends World implements IWorld {
 
   public Show(): void {
     this.element.removeClass(STYLE.hidden);
+    super.Show();
   }
 
   public get Extremes(): IInterval[] {

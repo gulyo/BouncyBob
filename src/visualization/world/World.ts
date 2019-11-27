@@ -10,7 +10,9 @@ export abstract class World extends Product<IConfigWorld> implements IWorld {
   protected onResize: IEvent = new BBEvent();
 
   public abstract Hide(): void;
-  public abstract Show(): void;
+  public Show(): void {
+    this.onResize.Trigger();
+  }
 
   public Init(config: IConfigWorld): void {
     this.name = config.Name;
