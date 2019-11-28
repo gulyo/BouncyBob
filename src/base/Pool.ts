@@ -3,9 +3,9 @@ import { IConfigProduct } from "./IConfigProduct";
 import { IPool } from "./IPool";
 import { IProductReusable } from "./IProductReusable";
 
-export abstract class Pool<TConfig extends IConfigProduct, TProduct extends IProductReusable<TConfig>>
-  extends Factory<TConfig, TProduct>
-  implements IPool<TConfig, TProduct> {
+export abstract class Pool<TProduct extends IProductReusable<IConfigProduct>>
+  extends Factory<TProduct>
+  implements IPool<TProduct> {
   protected limit: number = 10;
   protected poolActive: Map<string, TProduct> = new Map<string, TProduct>();
   protected poolPassive: TProduct[] = [];

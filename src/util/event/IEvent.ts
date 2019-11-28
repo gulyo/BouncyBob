@@ -5,5 +5,5 @@ export type EventHandler<TArgument extends IArgumentEventHandler = IArgumentEven
 export interface IEvent<TArgument extends IArgumentEventHandler = IArgumentEventHandler> {
   SignUp(handler: EventHandler<TArgument>): () => void;
 
-  Trigger(arg?: TArgument);
+  Trigger(arg?: TArgument): void;
 }
