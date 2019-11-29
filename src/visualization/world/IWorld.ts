@@ -1,4 +1,10 @@
-import IVisualizer from "../IVisualizer";
-import IWorldConfig from "./IWorldConfig";
+import { IEvent } from "../../util/event/IEvent";
+import { IInterval } from "../../util/IInterval";
+import { IVisualizer } from "../IVisualizer";
+import { IConfigWorld } from "./IConfigWorld";
 
-export default interface IWorld extends IVisualizer<IWorldConfig> {}
+export interface IWorld extends IVisualizer<IConfigWorld> {
+  readonly Extremes: IInterval[];
+
+  readonly OnResize: IEvent;
+}

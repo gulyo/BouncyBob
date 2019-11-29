@@ -1,7 +1,9 @@
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
 import { Configuration, ProvidePlugin } from "webpack";
+
 
 const BASE_DIR = path.resolve(__dirname);
 const SRC = path.join(BASE_DIR, "src");
@@ -39,7 +41,7 @@ export default function configFn(): Configuration {
           exclude: /node_modules/,
           oneOf: [
             {
-              test: /\.module\.scss$/,
+              test: /\.m\.scss$/,
               use: [
                 MiniCssExtractPlugin.loader,
                 {
@@ -47,6 +49,7 @@ export default function configFn(): Configuration {
                   options: {
                     modules: true,
                     onlyLocals: false,
+                    localsConvention: "camelCase",
                   },
                 },
                 "sass-loader",
@@ -60,9 +63,11 @@ export default function configFn(): Configuration {
       ],
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
-        inject: true,
+        inject: "body",
         chunks: "all",
+        favicon: "resource/image/bounce.png",
         filename: INDEX_HTML,
         template: path.join(SRC, INDEX_HTML),
       }),
@@ -80,7 +85,7 @@ export default function configFn(): Configuration {
       port: 4500,
       publicPath: "/",
       contentBase: DIST,
-      inline: true,
+      inline: false,
       hot: false,
       compress: true,
     },

@@ -1,5 +1,5 @@
-import IProduct from "../../base/IProduct";
+import { IProduct } from "../../base/IProduct";
+import { IVelocityModifier } from "../../base/IVelocityModifier";
+import { IConfigAcceleration } from "./IConfigAcceleration";
 
-export default interface IAcceleration extends IProduct {
-  UpdateVelocity(velocity: number): number;
-}
+export interface IAcceleration extends IProduct<IConfigAcceleration>, IVelocityModifier {}

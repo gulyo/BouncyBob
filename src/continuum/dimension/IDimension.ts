@@ -1,10 +1,7 @@
-import IEvent from "../../base/IEvent";
-import IProduct from "../../base/IProduct";
-import IDimensionConfig from "./IDimensionConfig";
+import { IProduct } from "../../base/IProduct";
+import { IConfigDimension } from "./IConfigDimension";
 
-export default interface IDimension extends IProduct<IDimensionConfig> {
-  readonly ExtremeLow: number;
-  readonly ExtremeHigh: number;
-
-  readonly OnResize: IEvent;
+export interface IDimension extends IProduct<IConfigDimension> {
+  ExtremeLow: number;
+  ExtremeHigh: number;
 }

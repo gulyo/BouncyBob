@@ -1,4 +1,7 @@
-import IVisualizer from "../IVisualizer";
-import IShapeConfig from "./IShapeConfig";
+import { IProductReusable } from "../../base/IProductReusable";
+import { IVisualizer } from "../IVisualizer";
+import { IConfigShape } from "./IConfigShape";
 
-export default interface IShape extends IVisualizer<IShapeConfig> {}
+export interface IShape<TConfig extends IConfigShape = IConfigShape>
+  extends IVisualizer<TConfig>,
+    IProductReusable<TConfig> {}

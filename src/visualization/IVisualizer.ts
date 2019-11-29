@@ -1,7 +1,7 @@
-import IProduct from "../base/IProduct";
-import IProductConfig from "../base/IProductConfig";
+import { IConfigProduct } from "../base/IConfigProduct";
+import { IProduct } from "../base/IProduct";
 
-export default interface IVisualizer<TConfig extends IProductConfig> extends IProduct<TConfig> {
+export interface IVisualizer<TConfig extends IConfigProduct = IConfigProduct> extends IProduct<TConfig> {
   Show(): void;
   Hide(): void;
 }
