@@ -29,6 +29,9 @@ export class Item extends ProductReusable<IConfigItem> implements IItem {
 
   public UpdatePosition(coordinates: number[]) {
     this.coordinates = [...coordinates];
+    if (!!this.visualizer) {
+      this.visualizer.MoveTo(this.coordinates);
+    }
   }
 
   public Deactivate(): void {

@@ -4,4 +4,6 @@ import { IConfigShape } from "./IConfigShape";
 
 export interface IShape<TConfig extends IConfigShape = IConfigShape>
   extends IVisualizer<TConfig>,
-    IProductReusable<TConfig> {}
+    IProductReusable<TConfig> {
+  MoveTo(coordinates: number[]): void;
+}

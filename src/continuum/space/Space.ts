@@ -70,6 +70,7 @@ export class Space extends Product<IConfigSpace> implements ISpace {
       const msg: string = "Cannot create more Items - Space reached its limit";
       Notifier.Notify(msg);
       logBouncyBob.warn({ msg, data: PoolItem.Limit });
+      return;
     }
     const item: IItem = PoolItem.Provide(creationArg.Descriptor.ClassName);
     item.Init(creationArg.Descriptor.Config);

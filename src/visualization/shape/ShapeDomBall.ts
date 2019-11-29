@@ -24,4 +24,13 @@ export class ShapeDomBall extends Shape<IConfigShapeDomBall> {
 
     this.container.append(this.element);
   }
+
+  public MoveTo(coordinates: number[]): void {
+    super.MoveTo(coordinates);
+    if(this.coordinates.length < 2) {
+      throw new Error("Shape - DomBall needs at least two coordinates");
+    }
+    this.element.css("left", this.coordinates[0] - this.diameter / 2);
+    this.element.css("top", this.coordinates[1] - this.diameter / 2);
+  }
 }
