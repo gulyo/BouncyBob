@@ -1,4 +1,6 @@
-import { IProduct } from "../../base/IProduct";
+import { IProductReusable } from "../../base/IProductReusable";
 import { IConfigItem } from "./IConfigItem";
 
-export interface IItem extends IProduct<IConfigItem> {}
+export interface IItem extends IProductReusable<IConfigItem> {
+  UpdatePosition(coordinates: number[]): void;
+}

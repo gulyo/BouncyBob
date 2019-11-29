@@ -3,8 +3,7 @@ import { IConfigProduct } from "./IConfigProduct";
 import { IPool } from "./IPool";
 import { IProductReusable } from "./IProductReusable";
 
-export abstract class Pool<TProduct extends IProductReusable<IConfigProduct>>
-  extends Factory<TProduct>
+export abstract class Pool<TProduct extends IProductReusable<IConfigProduct>> extends Factory<TProduct>
   implements IPool<TProduct> {
   protected limit: number = 10;
   protected poolActive: Map<string, TProduct> = new Map<string, TProduct>();
@@ -38,6 +37,7 @@ export abstract class Pool<TProduct extends IProductReusable<IConfigProduct>>
     } else {
       product = super.Provide(name);
     }
+    this.poolActive.set(product.GUId, product);
     product.Activate(this.createDeActivator(product));
     return product;
   }
@@ -45,11 +45,10 @@ export abstract class Pool<TProduct extends IProductReusable<IConfigProduct>>
   protected createDeActivator(product: TProduct): () => void {
     return ((key: string) => () => {
       const prod: TProduct = this.poolActive.get(key);
-      if (!!prod) {
+      if (!prod) {
         throw new Error(`The Product has already been de-activated: ${key}`);
       }
       this.poolActive.delete(prod.GUId);
-      prod.Deactivate();
       this.poolPassive.push(prod);
     })(product.GUId);
   }

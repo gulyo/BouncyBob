@@ -1,10 +1,17 @@
 import { Product } from "../../base/Product";
 import { BBEvent } from "../../util/event/BBEvent";
 import { IEvent } from "../../util/event/IEvent";
+import { logBouncyBob } from "../../util/logConfig";
+import { Notifier } from "../../util/Notifier";
 import { FactoryWorld } from "../../visualization/world/FactoryWorld";
 import { IWorld } from "../../visualization/world/IWorld";
+import { FactoryCreator } from "../creator/FactoryCreator";
+import { IArgumentEventCreation } from "../creator/IArgumentEventCreation";
+import { ICreator } from "../creator/ICreator";
 import { FactoryDimension } from "../dimension/FactoryDimension";
 import { IDimension } from "../dimension/IDimension";
+import { IItem } from "../item/IItem";
+import { PoolItem } from "../item/PoolItem";
 import { IConfigSpace } from "./IConfigSpace";
 import { ISpace } from "./ISpace";
 
@@ -12,6 +19,10 @@ export class Space extends Product<IConfigSpace> implements ISpace {
   protected dimensions: IDimension[];
   protected onResize: IEvent = new BBEvent();
   protected visualizer: IWorld;
+  protected creators: ICreator[];
+  protected config: IConfigSpace;
+
+  protected items: Map<string, IItem> = new Map<string, IItem>();
 
   public get Dimensions(): IDimension[] {
     return this.dimensions;
@@ -22,11 +33,10 @@ export class Space extends Product<IConfigSpace> implements ISpace {
   }
 
   public Init(config: IConfigSpace): void {
-    this.dimensions = config.Dimensions.map(conf => {
-      const dimension = FactoryDimension.Provide(conf.ClassName);
-      dimension.Init(conf.Config);
-      return dimension;
-    });
+    this.config = config;
+
+    this.setUpDimensions();
+    this.setUpCreators();
 
     this.visualizer = FactoryWorld.Provide(config.Visualizer.ClassName);
     this.visualizer.Init(config.Visualizer.Config);
@@ -36,6 +46,36 @@ export class Space extends Product<IConfigSpace> implements ISpace {
     this.onResize.SignUp(() => this.updateDimensionExtremes());
 
     this.visualizer.Show();
+  }
+
+  protected setUpDimensions() {
+    this.dimensions = this.config.Dimensions.map(conf => {
+      const dimension = FactoryDimension.Provide(conf.ClassName);
+      dimension.Init(conf.Config);
+      return dimension;
+    });
+  }
+
+  protected setUpCreators() {
+    this.creators = this.config.Creators.map(descriptor => {
+      const creator = FactoryCreator.Provide(descriptor.ClassName);
+      creator.Init(descriptor.Config);
+      creator.OnCreation.SignUp(this.creatorOnCreationFn.bind(this));
+      return creator;
+    });
+  }
+
+  protected creatorOnCreationFn(creationArg: IArgumentEventCreation): void {
+    if (!PoolItem.CanProvide) {
+      const msg: string = "Cannot create more Items - Space reached its limit";
+      Notifier.Notify(msg);
+      logBouncyBob.warn({ msg, data: PoolItem.Limit });
+    }
+    const item: IItem = PoolItem.Provide(creationArg.Descriptor.ClassName);
+    item.Init(creationArg.Descriptor.Config);
+    this.items.set(item.GUId, item);
+    item.OnDeactivate.SignUp(((guid: string) => () => this.items.delete(guid))(item.GUId));
+    item.UpdatePosition(creationArg.Coordinates);
   }
 
   protected updateDimensionExtremes(): void {
