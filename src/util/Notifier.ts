@@ -1,6 +1,7 @@
 import { appContainerElement } from "../appGlobals";
 import { logBouncyBob } from "./logConfig";
 import STYLE from "./Notifier.m.scss";
+import ClickEvent = JQuery.ClickEvent;
 
 class NotifierClass {
   private static get permissionGranted(): boolean {
@@ -19,13 +20,16 @@ class NotifierClass {
     this.initialized = false;
     // MacOs doesn't enable "automatic" notifications => I use a button
     this.grantPermissionButton = $(`<button class="${STYLE.grantPermissionButton}">Show Notifications</button>`);
-    this.grantPermissionButton.on("click", () =>
-      Notification.requestPermission().then(() => {
-        this.initialized = true;
-        this.flushMessages();
-        this.grantPermissionButton.remove();
-        this.grantPermissionButton = undefined;
-      }),
+    this.grantPermissionButton.on("click", (event: ClickEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+        Notification.requestPermission().then(() => {
+          this.initialized = true;
+          this.flushMessages();
+          this.grantPermissionButton.remove();
+          this.grantPermissionButton = undefined;
+        });
+      },
     );
     appContainerElement.append(this.grantPermissionButton);
   }

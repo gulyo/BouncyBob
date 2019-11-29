@@ -18,7 +18,7 @@ export class ShapeDomBall extends Shape<IConfigShapeDomBall> {
   }
 
   public Show(): void {
-    this.element = $(`<div class="${STYLE.domBall}"></div>`);
+    this.element = $(`<div class="${STYLE.domBall}" id="${this.GUId}"></div>`);
     this.element.width(this.diameter);
     this.element.height(this.diameter);
 
