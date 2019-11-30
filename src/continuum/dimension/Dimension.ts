@@ -26,6 +26,10 @@ export class Dimension extends Product<IConfigDimension> implements IDimension {
     this.extremeHigh = value;
   }
 
+  public get Accelerators(): IAcceleration[] {
+    return this.accelerators;
+  }
+
   public Init(config: IConfigDimension): void {
     this.accelerators = config.Accelerators.map(conf => {
       const accelerator = FactoryAcceleration.Provide(conf.ClassName);

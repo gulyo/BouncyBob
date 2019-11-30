@@ -14,4 +14,8 @@ export const configItem2dVerticalAbsorption: IConfigItem = {
     ClassName: NameShape.DOM_BALL,
     Config: configShapeDomBall,
   },
+  VelocityInterval: [
+    { Low: -300, High: 300 },
+    { Low: -300, High: 300 },
+  ],
 };

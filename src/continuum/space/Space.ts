@@ -48,6 +48,21 @@ export class Space extends Product<IConfigSpace> implements ISpace {
     this.visualizer.Show();
   }
 
+  public Update(): void {
+    this.items.forEach((item: IItem) => {
+      const tmpVelocity: number[] = item.Velocity;
+      for (let i: number = 0; i < Math.min(tmpVelocity.length, this.dimensions.length); ++i) {
+        const dimension: IDimension = this.dimensions[i];
+        tmpVelocity[i] = dimension.Accelerators.reduce(
+          (result, current) => current.UpdateVelocity(result),
+          tmpVelocity[i],
+        );
+      }
+      item.Velocity = tmpVelocity;
+      item.Move();
+    });
+  }
+
   protected setUpDimensions() {
     this.dimensions = this.config.Dimensions.map(conf => {
       const dimension = FactoryDimension.Provide(conf.ClassName);

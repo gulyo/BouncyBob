@@ -7,4 +7,6 @@ export interface ISpace extends IProduct<IConfigSpace> {
   readonly Dimensions: IDimension[];
 
   readonly OnResize: IEvent;
+
+  Update(): void;
 }

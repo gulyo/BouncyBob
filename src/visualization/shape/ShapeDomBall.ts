@@ -27,7 +27,7 @@ export class ShapeDomBall extends Shape<IConfigShapeDomBall> {
 
   public MoveTo(coordinates: number[]): void {
     super.MoveTo(coordinates);
-    if(this.coordinates.length < 2) {
+    if (this.coordinates.length < 2) {
       throw new Error("Shape - DomBall needs at least two coordinates");
     }
     this.element.css("left", this.coordinates[0] - this.diameter / 2);
