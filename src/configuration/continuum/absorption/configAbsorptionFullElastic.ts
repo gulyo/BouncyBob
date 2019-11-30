@@ -1,7 +1,5 @@
-import { IConfigAbsorptionLinear } from "../../../continuum/absorption/IConfigAbsorptionLinear";
+import { IConfigAbsorption } from "../../../continuum/absorption/IConfigAbsorption";
 
-export const configAbsorptionLinear: IConfigAbsorptionLinear = {
-  Constants: {
-    Coefficient: 2 / 3,
-  },
+export const configAbsorptionFullElastic: IConfigAbsorption = {
+  Constants: {},
 };

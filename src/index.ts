@@ -1,3 +1,4 @@
+import { appConfig } from "./appConfig";
 import "./appImports";
 import { configSpaceEarth2d } from "./configuration/continuum/space/configSpaceEarth2d";
 import { NameSpace } from "./continuum/space";
@@ -10,6 +11,8 @@ try {
 
   const space: ISpace = FactorySpace.Provide(NameSpace.EUCLIDEAN);
   space.Init(configSpaceEarth2d);
+
+  window.setInterval(() => space.Update(), appConfig.timeStep);
 } catch (e) {
   Notifier.Notify("An error occurred, check the console, please.");
   // Logger doesn't support source-map, so I just let the Developer's tool handle it

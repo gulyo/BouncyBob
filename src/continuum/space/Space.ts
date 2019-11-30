@@ -1,6 +1,7 @@
 import { Product } from "../../base/Product";
 import { BBEvent } from "../../util/event/BBEvent";
 import { IEvent } from "../../util/event/IEvent";
+import { IInterval } from "../../util/IInterval";
 import { logBouncyBob } from "../../util/logConfig";
 import { Notifier } from "../../util/Notifier";
 import { FactoryWorld } from "../../visualization/world/FactoryWorld";
@@ -21,6 +22,8 @@ export class Space extends Product<IConfigSpace> implements ISpace {
   protected visualizer: IWorld;
   protected creators: ICreator[];
   protected config: IConfigSpace;
+
+  protected dimensionExtremes: IInterval[];
 
   protected items: Map<string, IItem> = new Map<string, IItem>();
 
@@ -48,12 +51,29 @@ export class Space extends Product<IConfigSpace> implements ISpace {
     this.visualizer.Show();
   }
 
+  public Update(): void {
+    this.items.forEach((item: IItem) => {
+      item.HandleCollisions(this.dimensionExtremes);
+      const tmpVelocity: number[] = item.Velocity;
+      for (let i: number = 0; i < Math.min(tmpVelocity.length, this.dimensions.length); ++i) {
+        const dimension: IDimension = this.dimensions[i];
+        tmpVelocity[i] = dimension.Accelerators.reduce(
+          (result, current) => current.UpdateVelocity(result),
+          tmpVelocity[i],
+        );
+      }
+      item.Velocity = tmpVelocity;
+      item.Move();
+    });
+  }
+
   protected setUpDimensions() {
     this.dimensions = this.config.Dimensions.map(conf => {
       const dimension = FactoryDimension.Provide(conf.ClassName);
       dimension.Init(conf.Config);
       return dimension;
     });
+    this.collectExtremes();
   }
 
   protected setUpCreators() {
@@ -70,6 +90,7 @@ export class Space extends Product<IConfigSpace> implements ISpace {
       const msg: string = "Cannot create more Items - Space reached its limit";
       Notifier.Notify(msg);
       logBouncyBob.warn({ msg, data: PoolItem.Limit });
+      return;
     }
     const item: IItem = PoolItem.Provide(creationArg.Descriptor.ClassName);
     item.Init(creationArg.Descriptor.Config);
@@ -88,5 +109,13 @@ export class Space extends Product<IConfigSpace> implements ISpace {
       dimension.ExtremeHigh = extremes[i].High;
       dimension.ExtremeLow = extremes[i].Low;
     }
+    this.collectExtremes();
+  }
+
+  protected collectExtremes(): void {
+    this.dimensionExtremes = this.dimensions.map((dimension: IDimension) => ({
+      High: dimension.ExtremeHigh,
+      Low: dimension.ExtremeLow,
+    }));
   }
 }
