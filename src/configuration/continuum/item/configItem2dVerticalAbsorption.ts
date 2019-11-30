@@ -1,9 +1,10 @@
+import { appConfig } from "../../../appConfig";
 import { NameAbsorption } from "../../../continuum/absorption";
 import { IConfigItem } from "../../../continuum/item/IConfigItem";
 import { NameShape } from "../../../visualization/shape";
 import { configShapeDomBall } from "../../visulazitaion/shape/configShapeDomBall";
-import { configAbsorptionLinear } from "../absorption/configAbsorptionFullElastic";
-import { configAbsorptionFullElastic } from "../absorption/configAbsorptionLinear";
+import { configAbsorptionFullElastic } from "../absorption/configAbsorptionFullElastic";
+import { configAbsorptionLinear } from "../absorption/configAbsorptionLinear";
 
 export const configItem2dVerticalAbsorption: IConfigItem = {
   Absorptions: [
@@ -15,7 +16,11 @@ export const configItem2dVerticalAbsorption: IConfigItem = {
     Config: configShapeDomBall,
   },
   VelocityInterval: [
-    { Low: -300, High: 300 },
-    { Low: -300, High: 300 },
+    { Low: -250, High: 250 },
+    { Low: -500, High: 500 },
+  ],
+  VelocityMinimum: [
+    Number.NEGATIVE_INFINITY,
+    configAbsorptionLinear.Constants.Coefficient * (1000 / appConfig.timeStep),
   ],
 };

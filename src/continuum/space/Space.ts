@@ -1,6 +1,7 @@
 import { Product } from "../../base/Product";
 import { BBEvent } from "../../util/event/BBEvent";
 import { IEvent } from "../../util/event/IEvent";
+import { IInterval } from "../../util/IInterval";
 import { logBouncyBob } from "../../util/logConfig";
 import { Notifier } from "../../util/Notifier";
 import { FactoryWorld } from "../../visualization/world/FactoryWorld";
@@ -21,6 +22,8 @@ export class Space extends Product<IConfigSpace> implements ISpace {
   protected visualizer: IWorld;
   protected creators: ICreator[];
   protected config: IConfigSpace;
+
+  protected dimensionExtremes: IInterval[];
 
   protected items: Map<string, IItem> = new Map<string, IItem>();
 
@@ -50,6 +53,7 @@ export class Space extends Product<IConfigSpace> implements ISpace {
 
   public Update(): void {
     this.items.forEach((item: IItem) => {
+      item.HandleCollisions(this.dimensionExtremes);
       const tmpVelocity: number[] = item.Velocity;
       for (let i: number = 0; i < Math.min(tmpVelocity.length, this.dimensions.length); ++i) {
         const dimension: IDimension = this.dimensions[i];
@@ -69,6 +73,7 @@ export class Space extends Product<IConfigSpace> implements ISpace {
       dimension.Init(conf.Config);
       return dimension;
     });
+    this.collectExtremes();
   }
 
   protected setUpCreators() {
@@ -104,5 +109,13 @@ export class Space extends Product<IConfigSpace> implements ISpace {
       dimension.ExtremeHigh = extremes[i].High;
       dimension.ExtremeLow = extremes[i].Low;
     }
+    this.collectExtremes();
+  }
+
+  protected collectExtremes(): void {
+    this.dimensionExtremes = this.dimensions.map((dimension: IDimension) => ({
+      High: dimension.ExtremeHigh,
+      Low: dimension.ExtremeLow,
+    }));
   }
 }

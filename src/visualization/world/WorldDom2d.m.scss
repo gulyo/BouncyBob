@@ -9,6 +9,8 @@
   height: calc(100% - 16px);
   border: 1px dotted $favourite-blue;
 
+  overflow: hidden;
+
   position: absolute;
   top: 7px;
   left: 7px;

@@ -8,4 +8,5 @@ export interface IConfigItem extends IConfigProduct {
   Absorptions: Array<IDescriptorProduct<IConfigAbsorption>>;
   Visualizer: IDescriptorProduct<IConfigShape>;
   VelocityInterval: IInterval[];
+  VelocityMinimum: number[];
 }

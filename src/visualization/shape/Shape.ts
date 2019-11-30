@@ -1,6 +1,7 @@
 import { ProductReusable } from "../../base/ProductReusable";
+import { IInterval } from "../../util/IInterval";
 import { IConfigShape } from "./IConfigShape";
-import { IShape } from "./IShape";
+import { ICollision, IShape } from "./IShape";
 
 export abstract class Shape<TConfig extends IConfigShape = IConfigShape> extends ProductReusable<TConfig>
   implements IShape {
@@ -11,5 +12,9 @@ export abstract class Shape<TConfig extends IConfigShape = IConfigShape> extends
 
   public MoveTo(coordinates: number[]): void {
     this.coordinates = [...coordinates];
+  }
+
+  public CalculateCollisions(extremes: IInterval[]): ICollision[] {
+    return extremes.map(() => ({ Collided: false }));
   }
 }

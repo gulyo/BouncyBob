@@ -1,5 +1,7 @@
+import { IInterval } from "../../util/IInterval";
 import { selectDomElement } from "../../util/selectDomElement";
 import { IConfigShapeDomBall } from "./IConfigShapeDomBall";
+import { ICollision } from "./IShape";
 import { Shape } from "./Shape";
 import STYLE from "./ShapeDomBall.m.scss";
 
@@ -32,5 +34,21 @@ export class ShapeDomBall extends Shape<IConfigShapeDomBall> {
     }
     this.element.css("left", this.coordinates[0] - this.diameter / 2);
     this.element.css("top", this.coordinates[1] - this.diameter / 2);
+  }
+
+  public CalculateCollisions(extremes: IInterval[]): ICollision[] {
+    const collisions: ICollision[] = [];
+    for (let i: number = 0; i < Math.min(this.coordinates.length, extremes.length); ++i) {
+      const coordinate: number = this.coordinates[i];
+      const extreme: IInterval = extremes[i];
+      if (coordinate < extreme.Low + this.diameter / 2) {
+        collisions.push({ Collided: true, Overdrive: extreme.Low + this.diameter / 2 - coordinate });
+      } else if (coordinate > extreme.High - this.diameter / 2) {
+        collisions.push({ Collided: true, Overdrive: extreme.High - this.diameter / 2 - coordinate });
+      } else {
+        collisions.push({ Collided: false });
+      }
+    }
+    return collisions;
   }
 }
