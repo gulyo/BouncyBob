@@ -6,10 +6,10 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: 50px;
+    height: 128px;
     width: 100%;
 
-    background: linear-gradient(to top, $light-grey, $deep-grey);
+    background: linear-gradient(350deg, $light-grey, $deep-grey);
     border-width: 1px 1px 0 1px;
     border-color: $favourite-blue;
     border-style: dotted;

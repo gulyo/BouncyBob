@@ -6,6 +6,6 @@ export const configWorldDom3d: IConfigWorldDom3d = {
   ElementSelector: appConfig.domWorldElementSelector,
   DepthInterval: {
     Low: 0,
-    High: 40,
+    High: 2000,
   },
 };

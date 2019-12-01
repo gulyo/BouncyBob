@@ -2,7 +2,7 @@ import { appConfig } from "../../../appConfig";
 import { NameAbsorption } from "../../../continuum/absorption";
 import { IConfigItem } from "../../../continuum/item/IConfigItem";
 import { NameShape } from "../../../visualization/shape";
-import { configShapeDomBall } from "../../visulazitaion/shape/configShapeDomBall";
+import { configShapeDomBall3d } from "../../visulazitaion/shape/configShapeDomBall3d";
 import { configAbsorptionFullElastic } from "../absorption/configAbsorptionFullElastic";
 import { configAbsorptionLinear } from "../absorption/configAbsorptionLinear";
 
@@ -14,12 +14,12 @@ export const configItem3dVerticalAbsorption: IConfigItem = {
   ],
   Visualizer: {
     ClassName: NameShape.DOM_BALL_3D,
-    Config: configShapeDomBall,
+    Config: configShapeDomBall3d,
   },
   VelocityInterval: [
     { Low: -250, High: 250 },
     { Low: -500, High: 500 },
-    { Low: -7, High: 7 },
+    { Low: -2000, High: 2000 },
   ],
   VelocityMinimum: [
     Number.NEGATIVE_INFINITY,
