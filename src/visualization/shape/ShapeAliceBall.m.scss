@@ -1,0 +1,13 @@
+@import "../../style/colours";
+@import "../../style/formatting";
+
+.alice-ball {
+  position: absolute;
+  border: 1px solid $favourite-blue;
+  border-radius: $border-radius;
+  background: transparent;
+
+  width: calc(50% - 40px);
+  height: calc(50% - 40px);
+
+}

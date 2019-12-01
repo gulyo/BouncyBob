@@ -1,8 +1,9 @@
 @import "../../style/colours";
 @import "../../style/timings";
+@import "../../style/mixins";
 
 .dom-ball {
   position: absolute;
-  background: radial-gradient(circle at 75% 25%, $favourite-blue, $deep-blue);
-  border-radius: 50%;
+
+  @include ball-lance;
 }

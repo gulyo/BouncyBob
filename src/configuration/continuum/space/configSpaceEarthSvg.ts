@@ -2,7 +2,7 @@ import { NameCreator } from "../../../continuum/creator";
 import { NameDimension } from "../../../continuum/dimension";
 import { IConfigSpace } from "../../../continuum/space/IConfigSpace";
 import { NameWorld } from "../../../visualization/world";
-import { configWorldDom2d } from "../../visulazitaion/world/confirWorldDom2d";
+import { configWorldDom2d } from "../../visulazitaion/world/configWorldDom2d";
 import { configCreatorSvg } from "../creator/configCreatorSvg";
 import { configDimensionGravity } from "../dimension/configDimensionGravity";
 import { configDimensionSimple } from "../dimension/configDimensionSimple";

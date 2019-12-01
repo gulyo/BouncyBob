@@ -1,6 +1,6 @@
 import { appConfig } from "../../../appConfig";
 import { IConfigShapeDomBall } from "../../../visualization/shape/IConfigShapeDomBall";
-import { configWorldDom3d } from "../world/confirWorldDom3d";
+import { configWorldDom3d } from "../world/configWorldDom3d";
 
 const diameter: number = 60;
 

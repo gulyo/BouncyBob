@@ -8,7 +8,7 @@ import STYLE from "./WorldDom2d.m.scss";
 export class WorldDom2d<TConfig extends IConfigWorldDom2d = IConfigWorldDom2d> extends World<TConfig>
   implements IWorld {
   protected element: JQuery;
-  protected resizeTimerId: number;
+  protected extremes: IInterval[];
 
   public Hide(): void {
     this.element.addClass(STYLE.hidden);
@@ -17,15 +17,10 @@ export class WorldDom2d<TConfig extends IConfigWorldDom2d = IConfigWorldDom2d> e
   public Init(config: TConfig): void {
     super.Init(config);
     this.element = selectDomElement(config.ElementSelector);
-    this.element.addClass(STYLE.worldContainer);
+    this.setUpElementClass();
 
-    $(window).on("resize", () => {
-      // I only want to handle the end of resize
-      if (!!this.resizeTimerId) {
-        window.clearTimeout(this.resizeTimerId);
-      }
-      this.resizeTimerId = window.setTimeout(() => this.onResize.Trigger(), 500);
-    });
+    this.updateExtremes();
+    this.onResize.SignUp(() => this.updateExtremes());
   }
 
   public Show(): void {
@@ -34,13 +29,18 @@ export class WorldDom2d<TConfig extends IConfigWorldDom2d = IConfigWorldDom2d> e
   }
 
   public get Extremes(): IInterval[] {
-    return this.getExtremes();
+    return this.extremes;
   }
 
-  protected getExtremes(): IInterval[] {
-    return [
+  protected updateExtremes() {
+    this.extremes = [
       { Low: 0, High: this.element.innerWidth() },
-      { Low: 0, High: this.element.innerHeight() },
+      { Low: 0, High: this.element.innerHeight() }
     ];
   }
+
+  protected setUpElementClass(): void {
+    this.element.addClass(STYLE.worldContainer);
+  }
+
 }

@@ -1,4 +1,5 @@
 import { PoolShape } from "./PoolShape";
+import { ShapeAliceBall } from "./ShapeAliceBall";
 import { ShapeDomBall } from "./ShapeDomBall";
 import { ShapeDomBall3d } from "./ShapeDomBall3d";
 import { ShapeLog } from "./ShapeLog";
@@ -9,9 +10,11 @@ export enum NameShape {
   DOM_BALL_3D = "DomBall3d",
   SVG_BALL = "SvgBall",
   LOG_BALL = "LogBall",
+  ALICE_BALL = "AliceBall",
 }
 
 PoolShape.Register(NameShape.DOM_BALL, ShapeDomBall);
 PoolShape.Register(NameShape.DOM_BALL_3D, ShapeDomBall3d);
 PoolShape.Register(NameShape.SVG_BALL, ShapeSvgBall);
 PoolShape.Register(NameShape.LOG_BALL, ShapeLog);
+PoolShape.Register(NameShape.ALICE_BALL, ShapeAliceBall);
