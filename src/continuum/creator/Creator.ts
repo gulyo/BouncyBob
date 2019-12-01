@@ -5,10 +5,10 @@ import { IEvent } from "../../util/event/IEvent";
 import { IConfigItem } from "../item/IConfigItem";
 import { IArgumentEventCreation } from "./IArgumentEventCreation";
 import { IConfigCreator } from "./IConfigCreator";
-import { IConfigCreatorDom } from "./IConfigCreatorDom";
 import { ICreator } from "./ICreator";
 
-export abstract class Creator extends Product<IConfigCreatorDom> implements ICreator {
+export abstract class Creator<TConfig extends IConfigCreator = IConfigCreator> extends Product<TConfig>
+  implements ICreator {
   public get OnCreation(): IEvent<IArgumentEventCreation> {
     return this.onCreation;
   }
@@ -20,9 +20,9 @@ export abstract class Creator extends Product<IConfigCreatorDom> implements ICre
   protected creationCounter = 0;
   protected descriptors: Array<IDescriptorProduct<IConfigItem>>;
 
-  protected config: IConfigCreator;
+  protected config: TConfig;
 
-  public Init(config: IConfigCreatorDom): void {
+  public Init(config: TConfig): void {
     this.config = config;
     this.descriptors = config.ItemDescriptors;
     if (!this.descriptors.length) {
