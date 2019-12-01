@@ -11,4 +11,5 @@ export const configCreatorDom: IConfigCreatorDom = {
     },
   ],
   ElementSelector: appConfig.domWorldElementSelector,
+  ExtraCoordinates: [],
 };

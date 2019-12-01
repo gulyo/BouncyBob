@@ -5,15 +5,16 @@ import { IWorld } from "./IWorld";
 import { World } from "./World";
 import STYLE from "./WorldDom2d.m.scss";
 
-export class WorldDom2d extends World implements IWorld {
-  private element: JQuery;
-  private resizeTimerId: number;
+export class WorldDom2d<TConfig extends IConfigWorldDom2d = IConfigWorldDom2d> extends World<TConfig>
+  implements IWorld {
+  protected element: JQuery;
+  protected resizeTimerId: number;
 
   public Hide(): void {
     this.element.addClass(STYLE.hidden);
   }
 
-  public Init(config: IConfigWorldDom2d): void {
+  public Init(config: TConfig): void {
     super.Init(config);
     this.element = selectDomElement(config.ElementSelector);
     this.element.addClass(STYLE.worldContainer);
@@ -33,6 +34,10 @@ export class WorldDom2d extends World implements IWorld {
   }
 
   public get Extremes(): IInterval[] {
+    return this.getExtremes();
+  }
+
+  protected getExtremes(): IInterval[] {
     return [
       { Low: 0, High: this.element.innerWidth() },
       { Low: 0, High: this.element.innerHeight() },

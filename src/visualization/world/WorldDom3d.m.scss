@@ -1,0 +1,22 @@
+@import "../../style/colours";
+
+.world-3d {
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 128px;
+    width: 100%;
+
+    background: linear-gradient(350deg, $light-grey, $deep-grey);
+    border-width: 1px 1px 0 1px;
+    border-color: $favourite-blue;
+    border-style: dotted;
+
+    transform-origin: 50% 100%;
+    transform: perspective(600px) rotateX(60deg);
+
+    z-index: -16;
+  }
+}
