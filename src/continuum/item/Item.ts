@@ -9,7 +9,6 @@ import { IConfigItem } from "./IConfigItem";
 import { IItem } from "./IItem";
 
 export class Item extends ProductReusable<IConfigItem> implements IItem {
-
   public get Velocity(): number[] {
     return this.velocity;
   }
@@ -104,7 +103,7 @@ export class Item extends ProductReusable<IConfigItem> implements IItem {
   protected randomizeVelocity(): void {
     this.velocity = this.config.VelocityInterval.map(
       (velocityInterval: IInterval) =>
-        Math.random() * (velocityInterval.High - velocityInterval.Low) + velocityInterval.Low
+        Math.random() * (velocityInterval.High - velocityInterval.Low) + velocityInterval.Low,
     );
   }
 }
