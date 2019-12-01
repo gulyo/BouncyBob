@@ -7,4 +7,5 @@ export interface IItem extends IProductReusable<IConfigItem> {
   UpdatePosition(coordinates: number[]): void;
   Move();
   HandleCollisions(extremes: IInterval[]): void;
+  MoveVisualizer(): void;
 }

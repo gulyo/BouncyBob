@@ -53,18 +53,23 @@ export class Space extends Product<IConfigSpace> implements ISpace {
 
   public Update(): void {
     this.items.forEach((item: IItem) => {
-      item.HandleCollisions(this.dimensionExtremes);
-      const tmpVelocity: number[] = item.Velocity;
-      for (let i: number = 0; i < Math.min(tmpVelocity.length, this.dimensions.length); ++i) {
-        const dimension: IDimension = this.dimensions[i];
-        tmpVelocity[i] = dimension.Accelerators.reduce(
-          (result, current) => current.UpdateVelocity(result),
-          tmpVelocity[i],
-        );
-      }
-      item.Velocity = tmpVelocity;
       item.Move();
+      item.HandleCollisions(this.dimensionExtremes);
+
+      this.updateItemVelocity(item);
     });
+  }
+
+  protected updateItemVelocity(item: IItem) {
+    const tmpVelocity: number[] = item.Velocity;
+    for (let i: number = 0; i < Math.min(tmpVelocity.length, this.dimensions.length); ++i) {
+      const dimension: IDimension = this.dimensions[i];
+      tmpVelocity[i] = dimension.Accelerators.reduce(
+        (result, current) => current.UpdateVelocity(result),
+        tmpVelocity[i],
+      );
+    }
+    item.Velocity = tmpVelocity;
   }
 
   protected setUpDimensions() {

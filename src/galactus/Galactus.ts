@@ -1,40 +1,17 @@
 import { appConfig } from "../appConfig";
-import { IDescriptorProduct } from "../base/IDescriptorProduct";
-import { configSpaceEarth2d } from "../configuration/continuum/space/configSpaceEarth2d";
-import { configSpaceEarth3d } from "../configuration/continuum/space/configSpaceEarth3d";
-import { NameSpace } from "../continuum/space";
 import { FactorySpace } from "../continuum/space/FactorySpace";
-import { IConfigSpace } from "../continuum/space/IConfigSpace";
 import { ISpace } from "../continuum/space/ISpace";
 import { selectDomElement } from "../util/selectDomElement";
+import { buttonList } from "./buttonList";
 import STYLE from "./Galactus.m.scss";
+import { IButtonDescriptor } from "./IButtonDescriptor";
 import ClickEvent = JQuery.ClickEvent;
-
-interface IButtonDescriptor {
-  Text: string;
-  Descriptor: IDescriptorProduct<IConfigSpace>;
-}
 
 /**
  * A simple world creator class to initialize simulation
  */
 export class Galactus {
-  private static readonly BUTTON_LIST: IButtonDescriptor[] = [
-    {
-      Text: "Nintento classic",
-      Descriptor: {
-        ClassName: NameSpace.EUCLIDEAN,
-        Config: configSpaceEarth2d,
-      },
-    },
-    {
-      Text: "Into the Box",
-      Descriptor: {
-        ClassName: NameSpace.EUCLIDEAN,
-        Config: configSpaceEarth3d,
-      },
-    },
-  ];
+  private static readonly BUTTON_LIST: IButtonDescriptor[] = buttonList;
 
   private readonly container: JQuery;
   private readonly element: JQuery;
