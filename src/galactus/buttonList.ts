@@ -1,6 +1,7 @@
 import { configSpaceEarth2d } from "../configuration/continuum/space/configSpaceEarth2d";
 import { configSpaceEarth3d } from "../configuration/continuum/space/configSpaceEarth3d";
 import { configSpaceEarthSvg } from "../configuration/continuum/space/configSpaceEarthSvg";
+import { configSpaceLog } from "../configuration/continuum/space/configSpaceLog";
 import { NameSpace } from "../continuum/space";
 import { IButtonDescriptor } from "./IButtonDescriptor";
 
@@ -24,6 +25,13 @@ export const buttonList: IButtonDescriptor[] = [
     Descriptor: {
       ClassName: NameSpace.EUCLIDEAN,
       Config: configSpaceEarthSvg,
+    },
+  },
+  {
+    Text: "Log Ann's run",
+    Descriptor: {
+      ClassName: NameSpace.EUCLIDEAN,
+      Config: configSpaceLog,
     },
   },
 ];
