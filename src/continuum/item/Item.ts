@@ -9,14 +9,6 @@ import { IConfigItem } from "./IConfigItem";
 import { IItem } from "./IItem";
 
 export class Item extends ProductReusable<IConfigItem> implements IItem {
-  protected absorptions: IAbsorption[];
-  protected visualizer: IShape;
-
-  protected coordinates: number[];
-  protected config: IConfigItem;
-
-  protected velocity: number[];
-  protected readonly velocityMultiplier: number = appConfig.timeStep / 1000;
 
   public get Velocity(): number[] {
     return this.velocity;
@@ -25,6 +17,15 @@ export class Item extends ProductReusable<IConfigItem> implements IItem {
   public set Velocity(value: number[]) {
     this.velocity = [...value];
   }
+
+  protected absorptions: IAbsorption[];
+  protected visualizer: IShape;
+
+  protected coordinates: number[];
+  protected config: IConfigItem;
+
+  protected velocity: number[];
+  protected readonly velocityMultiplier: number = appConfig.timeStep / 1000;
 
   public Init(config: IConfigItem): void {
     this.config = config;
@@ -44,7 +45,7 @@ export class Item extends ProductReusable<IConfigItem> implements IItem {
 
   public UpdatePosition(coordinates: number[]) {
     this.coordinates = [...coordinates];
-    this.moveTo();
+    this.MoveVisualizer();
   }
 
   public Deactivate(): void {
@@ -59,45 +60,51 @@ export class Item extends ProductReusable<IConfigItem> implements IItem {
     for (let i: number = 0; i < Math.min(this.velocity.length, this.coordinates.length); ++i) {
       this.coordinates[i] += this.velocity[i] * this.velocityMultiplier;
     }
-    this.moveTo();
+    this.MoveVisualizer();
   }
 
   public HandleCollisions(extremes: IInterval[]): void {
     if (!!this.visualizer) {
       const collisions: ICollision[] = this.visualizer.CalculateCollisions(extremes);
+      let moveCollidedVisualizer: boolean = false;
       for (let i: number = 0; i < Math.min(this.Velocity.length, collisions.length); ++i) {
         if (collisions[i].Collided) {
+          moveCollidedVisualizer = true;
+
+          if (this.coordinates.length > i) {
+            this.coordinates[i] = !!collisions[i].Overdrive
+              ? this.coordinates[i] + collisions[i].Overdrive
+              : this.coordinates[i];
+          }
+
+          this.velocity[i] *= -1;
           if (this.absorptions.length > i) {
             this.velocity[i] = this.absorptions[i].UpdateVelocity(this.velocity[i]);
           }
-          this.velocity[i] *= -1;
           if (this.config.VelocityMinimum.length > i) {
             if (this.config.VelocityMinimum[i] > Math.abs(this.velocity[i])) {
               this.Deactivate();
               return;
             }
           }
-          if (this.coordinates.length > i) {
-            this.coordinates[i] = !!collisions[i].Overdrive
-              ? this.coordinates[i] + collisions[i].Overdrive
-              : this.coordinates[i];
-          }
         }
       }
-      this.moveTo();
+      if (moveCollidedVisualizer) {
+        this.MoveVisualizer();
+      }
+    }
+  }
+
+  public MoveVisualizer(): void {
+    if (!!this.visualizer) {
+      this.visualizer.MoveTo(this.coordinates);
     }
   }
 
   protected randomizeVelocity(): void {
     this.velocity = this.config.VelocityInterval.map(
       (velocityInterval: IInterval) =>
-        Math.random() * (velocityInterval.High - velocityInterval.Low) + velocityInterval.Low,
+        Math.random() * (velocityInterval.High - velocityInterval.Low) + velocityInterval.Low
     );
-  }
-
-  protected moveTo(): void {
-    if (!!this.visualizer) {
-      this.visualizer.MoveTo(this.coordinates);
-    }
   }
 }

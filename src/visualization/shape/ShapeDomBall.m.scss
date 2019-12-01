@@ -5,6 +5,4 @@
   position: absolute;
   background: radial-gradient(circle at 75% 25%, $favourite-blue, $deep-blue);
   border-radius: 50%;
-
-  transition: top $time-step linear, left $time-step linear;
 }

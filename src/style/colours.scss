@@ -2,3 +2,7 @@ $light-grey: #efefef;
 $deep-grey: #c3c3c3;
 $favourite-blue: #337c85;
 $deep-blue: #24464f;
+
+:export {
+  favouriteBlue: $favourite-blue;
+}
