@@ -54,7 +54,7 @@
     "formatTests": "prettier --write \"tests/**/*.ts\" \"tests/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "stylelint": "stylelint \"src/**/*.scss\" --syntax scss --config .stylelintrc.json",
-    "preBuild": "npm run format && npm run lint && npm run stylelint",
+    "preBuild": "npm run format && npm run lint && npm run stylelint && npm run test",
     "serveBuild": "http-server dist -p 8080 -o"
   }
 }

@@ -12,7 +12,7 @@ export class WorldSVG extends WorldDom2d {
     this.OnResize.SignUp(
       function() {
         this.resizeSvg();
-      }.bind(this)
+      }.bind(this),
     );
   }
 

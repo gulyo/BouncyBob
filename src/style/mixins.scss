@@ -8,6 +8,9 @@
   color: $favourite-blue;
   padding: $padding-default;
   cursor: pointer;
+  &:focus {
+    outline:0;
+  }
 }
 
 @mixin center-in-container {
