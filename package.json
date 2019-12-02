@@ -51,6 +51,7 @@
     "test": "jest --config jest.config.json",
     "testCoverage": "jest --config jest.config.json --coverage",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "formatTests": "prettier --write \"tests/**/*.ts\" \"tests/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "stylelint": "stylelint \"src/**/*.scss\" --syntax scss --config .stylelintrc.json",
     "preBuild": "npm run format && npm run lint && npm run stylelint",

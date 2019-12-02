@@ -10,30 +10,30 @@ export const buttonList: IButtonDescriptor[] = [
     Text: "Nintento classic",
     Descriptor: {
       ClassName: NameSpace.EUCLIDEAN,
-      Config: configSpaceEarth2d
-    }
+      Config: configSpaceEarth2d,
+    },
   },
   {
     Text: "Into the Box",
     Descriptor: {
       ClassName: NameSpace.EUCLIDEAN,
-      Config: configSpaceEarth3d
-    }
+      Config: configSpaceEarth3d,
+    },
   },
   {
     Text: "Seriously Versatile Game-engine",
     Descriptor: {
       ClassName: NameSpace.EUCLIDEAN,
-      Config: configSpaceEarthSvg
-    }
+      Config: configSpaceEarthSvg,
+    },
   },
   {
     Text: "Log Ann's run",
     Descriptor: {
       ClassName: NameSpace.EUCLIDEAN,
-      Config: configSpaceLog
-    }
-  }
+      Config: configSpaceLog,
+    },
+  },
   // {
   //   Text: "Alice in Paralland",
   //   Descriptor: {

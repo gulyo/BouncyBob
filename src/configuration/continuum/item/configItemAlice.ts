@@ -8,18 +8,18 @@ import { configAbsorptionLinear } from "../absorption/configAbsorptionLinear";
 export const configItemAlice: IConfigItem = {
   Absorptions: [
     { ClassName: NameAbsorption.LINEAR, Config: configAbsorptionLinear },
-    { ClassName: NameAbsorption.LINEAR, Config: configAbsorptionLinear }
+    { ClassName: NameAbsorption.LINEAR, Config: configAbsorptionLinear },
   ],
   Visualizer: {
     ClassName: NameShape.ALICE_BALL,
-    Config: configShapeAliceBall
+    Config: configShapeAliceBall,
   },
   VelocityInterval: [
     { Low: -400, High: 400 },
-    { Low: -400, High: 400 }
+    { Low: -400, High: 400 },
   ],
   VelocityMinimum: [
     configAbsorptionLinear.Constants.Coefficient * (1000 / appConfig.timeStep) * 1.1,
-    configAbsorptionLinear.Constants.Coefficient * (1000 / appConfig.timeStep) * 1.1
-  ]
+    configAbsorptionLinear.Constants.Coefficient * (1000 / appConfig.timeStep) * 1.1,
+  ],
 };

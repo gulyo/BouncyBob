@@ -35,12 +35,11 @@ export class WorldDom2d<TConfig extends IConfigWorldDom2d = IConfigWorldDom2d> e
   protected updateExtremes() {
     this.extremes = [
       { Low: 0, High: this.element.innerWidth() },
-      { Low: 0, High: this.element.innerHeight() }
+      { Low: 0, High: this.element.innerHeight() },
     ];
   }
 
   protected setUpElementClass(): void {
     this.element.addClass(STYLE.worldContainer);
   }
-
 }
