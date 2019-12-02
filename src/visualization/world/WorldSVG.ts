@@ -12,12 +12,12 @@ export class WorldSVG extends WorldDom2d {
     this.OnResize.SignUp(
       function() {
         this.resizeSvg();
-      }.bind(this),
+      }.bind(this)
     );
   }
 
   protected resizeSvg() {
-    const extremes = this.getExtremes();
-    this.svgElement.size(extremes[0].High - extremes[0].Low, extremes[1].High - extremes[1].Low);
+    this.updateExtremes();
+    this.svgElement.size(this.extremes[0].High - this.extremes[0].Low, this.extremes[1].High - this.extremes[1].Low);
   }
 }

@@ -34,11 +34,4 @@ export const buttonList: IButtonDescriptor[] = [
       Config: configSpaceLog,
     },
   },
-  // {
-  //   Text: "Alice in Paralland",
-  //   Descriptor: {
-  //     ClassName: NameSpace.EUCLIDEAN,
-  //     Config: configSpaceAlice,
-  //   },
-  // },
 ];
