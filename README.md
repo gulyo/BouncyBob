@@ -9,5 +9,18 @@ run-time dependencies
 ### Functionality
 
 After selecting the desired World implementation, every mouse click will
-create a new Item (ball) with random velocity.
+create a new Item (ball) with random velocity. The balls will collide
+with the walls of the World.
 
+## Running the app
+
+### Requirements
+- node.js
+- npm
+
+### Start
+Clone the repository, then run `npm run prod:start`
+
+## Project structure:
+### Continuum:
+- [Space](src/continuum/space/README.md)
