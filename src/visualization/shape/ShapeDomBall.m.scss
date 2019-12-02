@@ -1,0 +1,9 @@
+@import "../../style/colours";
+@import "../../style/timings";
+@import "../../style/mixins";
+
+.dom-ball {
+  position: absolute;
+
+  @include ball-lance;
+}

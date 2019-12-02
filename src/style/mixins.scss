@@ -1,0 +1,26 @@
+@import "./formatting";
+@import "./colours";
+
+@mixin button-formatter {
+  background: transparent;
+  border: 1px solid $favourite-blue;
+  border-radius: $border-radius;
+  color: $favourite-blue;
+  padding: $padding-default;
+  cursor: pointer;
+  &:focus {
+    outline:0;
+  }
+}
+
+@mixin center-in-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin ball-lance {
+  background: radial-gradient(circle at 75% 25%, $favourite-blue, $deep-blue);
+  border-radius: 50%;
+}

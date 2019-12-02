@@ -1,0 +1,9 @@
+@import "../style/mixins";
+
+.grant-permission-button {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  z-index: 16;
+  @include button-formatter;
+}

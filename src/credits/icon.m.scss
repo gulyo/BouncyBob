@@ -1,0 +1,13 @@
+@import "../style/timings";
+
+.icon-credit {
+  position: fixed;
+  bottom: 2px;
+  left: 2px;
+  opacity: .3;
+  transition: opacity linear $fast;
+
+  &:hover {
+    opacity: 1;
+  }
+}

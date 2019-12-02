@@ -1,0 +1,30 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "extends": "stylelint-config-recommended-scss",
+  "defaultSeverity": "error",
+  "rules": {
+    "scss/selector-no-redundant-nesting-selector": true,
+    "max-empty-lines": 2,
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global",
+          "export",
+          "import",
+          "local"
+        ]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "favouriteBlue"
+        ]
+      }
+    ]
+  }
+}

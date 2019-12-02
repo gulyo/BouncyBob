@@ -1,0 +1,20 @@
+@import "../style/colours";
+@import "../style/formatting";
+@import "../style/mixins";
+
+.button-panel {
+  @include center-in-container;
+
+  padding: $padding-default;
+  border: 2px solid $favourite-blue;
+  border-radius: $border-radius;
+}
+
+.world-button {
+  @include button-formatter;
+
+  display: block;
+  width: 200px;
+  margin: $margin-default;
+  text-align: center;
+}
