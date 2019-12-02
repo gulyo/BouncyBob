@@ -21,5 +21,4 @@ describe("Absorption", () => {
 
     expect(absorption.UpdateVelocity(velocity)).toEqual(velocity * configAbsorptionLinear.Constants.Coefficient);
   });
-
 });

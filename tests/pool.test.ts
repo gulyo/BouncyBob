@@ -26,13 +26,13 @@ describe("Pool testing", () => {
 
   test("Limit minimum", () => {
     const limit = 0;
-    expect(() => pool.Limit = limit).toThrowError(`Limit minimum is 1, received value: ${limit}`);
+    expect(() => (pool.Limit = limit)).toThrowError(`Limit minimum is 1, received value: ${limit}`);
   });
 
   test("Limit after Provide", () => {
     const limit = 5;
     pool.Provide("dummy");
-    expect(() => pool.Limit = limit).toThrowError(`Pool limit can only be set before the first use of Provide`);
+    expect(() => (pool.Limit = limit)).toThrowError(`Pool limit can only be set before the first use of Provide`);
   });
 
   test("Can Provide", () => {
@@ -51,5 +51,4 @@ describe("Pool testing", () => {
     pool.Provide("dummy");
     expect(() => pool.Provide("dummy")).toThrowError("This Pool cannot provide more Product, deactivate some");
   });
-
 });

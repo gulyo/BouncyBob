@@ -12,8 +12,8 @@ describe("Acceleration", () => {
     acceleration = FactoryAcceleration.Provide(NameAcceleration.GRAVITY);
     acceleration.Init(configAccelerationGravityEarth);
 
-    expect(acceleration.UpdateVelocity(velocity)).toEqual(velocity + configAccelerationGravityEarth.Constants.coefficient * (appConfig.timeStep / 1000));
+    expect(acceleration.UpdateVelocity(velocity)).toEqual(
+      velocity + configAccelerationGravityEarth.Constants.coefficient * (appConfig.timeStep / 1000),
+    );
   });
-
-
 });
