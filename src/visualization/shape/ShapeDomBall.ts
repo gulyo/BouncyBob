@@ -17,9 +17,7 @@ export class ShapeDomBall extends ShapeBall {
   }
 
   public Show(): void {
-    this.element = $(`<div class="${STYLE.domBall}" id="${this.GUId}"></div>`);
-    this.element.width(this.diameter);
-    this.element.height(this.diameter);
+    this.createElement();
 
     this.container.append(this.element);
   }
@@ -31,5 +29,11 @@ export class ShapeDomBall extends ShapeBall {
     }
     this.element.css("left", this.coordinates[0] - this.diameter / 2);
     this.element.css("top", this.coordinates[1] - this.diameter / 2);
+  }
+
+  protected createElement(): void {
+    this.element = $(`<div class="${STYLE.domBall}" id="${this.GUId}"></div>`);
+    this.element.width(this.diameter);
+    this.element.height(this.diameter);
   }
 }
