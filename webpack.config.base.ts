@@ -54,14 +54,24 @@ export default function configFn(): Configuration {
                   options: {
                     modules: true,
                     onlyLocals: false,
-                    localsConvention: "camelCase"
+                    localsConvention: "camelCase",
+                    sourceMap: true
                   }
                 },
                 "sass-loader"
               ]
             },
             {
-              use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+              use: [
+                MiniCssExtractPlugin.loader,
+                {
+                  loader: "css-loader",
+                  options: {
+                    sourceMap: true,
+                  },
+                },
+                "sass-loader"
+              ]
             }
           ]
         }
