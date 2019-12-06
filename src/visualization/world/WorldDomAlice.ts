@@ -4,15 +4,16 @@ import STORY from "./WorldDomAlice.html";
 import STYLE from "./WorldDomAlice.m.scss";
 
 export class WorldDomAlice extends WorldDom2d {
-
   public Init(config: IConfigWorldDom2d): void {
     super.Init(config);
-    this.element.append($(`
+    this.element.append(
+      $(`
         <div class="${STYLE.worldBall}">
             <div class="${STYLE.story}">
                 ${STORY}
             </div>
-        </div>`));
+        </div>`),
+    );
   }
 
   protected setUpElementClass(): void {

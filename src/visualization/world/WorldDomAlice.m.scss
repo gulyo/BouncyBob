@@ -27,7 +27,7 @@
       left: 50%;
       width: 2000%;
       transform: translate(-50%, 0);
-      opacity: .2;
+      opacity: 0.2;
       color: $deep-blue;
       transition: opacity $fast linear;
       pointer-events: none;
@@ -37,6 +37,4 @@
       opacity: 1;
     }
   }
-
 }
-

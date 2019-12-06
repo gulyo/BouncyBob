@@ -4,6 +4,6 @@ import { IConfigShapeDomBall } from "../../../visualization/shape/IConfigShapeDo
 export const configShapeDomAlice: IConfigShapeDomBall = {
   ContainerSelector: appConfig.domWorldElementSelector,
   Constants: {
-    Diameter: 40
-  }
+    Diameter: 40,
+  },
 };
