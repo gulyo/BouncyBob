@@ -16,7 +16,7 @@ A third elastic dimension added to **Nintendo classic**.
 
 The same as **Nintendo classic**, but with SVG graphics.
 
-## Log Ann's run
+## Log(n)'s run
 
 A log based world - open the Javascript console to see the output.
 

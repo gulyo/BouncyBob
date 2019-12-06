@@ -15,26 +15,31 @@ const MAIN_CHUNK = "bouncy-bob";
 export default function configFn(): Configuration {
   return {
     entry: {
-      [MAIN_CHUNK]: path.join(SRC, "index.ts"),
+      [MAIN_CHUNK]: path.join(SRC, "index.ts")
     },
     output: {
       path: DIST,
-      filename: "[name]_[contenthash].js",
+      filename: "[name]_[contenthash].js"
     },
     watchOptions: {
       ignored: [
         "/node_modules/",
-        "/install/",
-      ],
+        "/install/"
+      ]
     },
     devtool: "source-map",
     module: {
       // Rules for file-types I use only
       rules: [
         {
+          test: /\.html$/,
+          exclude: /node_modules/,
+          use: { loader: "html-loader" }
+        },
+        {
           test: /\.tsx?$/,
           loader: "ts-loader",
-          exclude: /node_modules/,
+          exclude: /node_modules/
         },
         {
           test: /\.scss$/,
@@ -49,18 +54,18 @@ export default function configFn(): Configuration {
                   options: {
                     modules: true,
                     onlyLocals: false,
-                    localsConvention: "camelCase",
-                  },
+                    localsConvention: "camelCase"
+                  }
                 },
-                "sass-loader",
-              ],
+                "sass-loader"
+              ]
             },
             {
-              use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
-            },
-          ],
-        },
-      ],
+              use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+            }
+          ]
+        }
+      ]
     },
     plugins: [
       new CleanWebpackPlugin(),
@@ -69,16 +74,16 @@ export default function configFn(): Configuration {
         chunks: "all",
         favicon: "resource/image/bounce.png",
         filename: INDEX_HTML,
-        template: path.join(SRC, INDEX_HTML),
+        template: path.join(SRC, INDEX_HTML)
       }),
       new ProvidePlugin({
         "$": "jquery",
-        "jQuery": "jquery",
+        "jQuery": "jquery"
       }),
       new MiniCssExtractPlugin({
         filename: "[name].[contenthash].css",
-        chunkFilename: "[name].[contenthash].js",
-      }),
+        chunkFilename: "[name].[contenthash].js"
+      })
     ],
     devServer: {
       host: "localhost",
@@ -87,10 +92,10 @@ export default function configFn(): Configuration {
       contentBase: DIST,
       inline: false,
       hot: false,
-      compress: true,
+      compress: true
     },
     resolve: {
-      extensions: [".tsx", ".ts", ".js", ".scss"],
-    },
+      extensions: [".tsx", ".ts", ".js", ".scss"]
+    }
   };
 }

@@ -1,0 +1,12 @@
+@import "../../style/colours";
+@import "../../style/formatting";
+
+.dom-alice {
+  position: absolute;
+
+  width: calc(50% + 20px);
+  height: calc(50% + 20px);
+
+  border: 2px solid $favourite-blue;
+  border-radius: $border-radius;
+}
