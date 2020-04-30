@@ -7,7 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@svgdotjs/svg.js": "^3.0.16",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "typescript-logging": "^0.6.4",
     "ulid": "^2.3.0"
   },
