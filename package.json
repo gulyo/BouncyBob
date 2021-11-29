@@ -46,6 +46,7 @@
     "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
+    "nvm-use-correct-node-version": "nvm use",
     "dev:start": "webpack-dev-server --mode development --config webpack.config.dev.ts --progress",
     "dev:build": "npm run preBuild && webpack --mode development --config webpack.config.dev.ts --progress",
     "prod:start": "webpack-dev-server --mode production --config webpack.config.prod.ts --progress",
